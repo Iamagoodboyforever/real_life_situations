@@ -1,0 +1,17 @@
+Cabbage=1.35
+Eggplant=1.45
+Carrot=1.75
+Beet=2.34
+Broccoli=2.43
+Cauliflower=1.54
+Cucumber=1.76
+Lettuce=2.54
+Onion=1.23
+Pepper=1.45
+Potato=1.32
+Pumpkin=1.32
+Radish=1.76
+Corn=1.21
+Tomato=1.32
+Celery=1.43
+Spinach=1.54

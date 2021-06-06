@@ -1,0 +1,9 @@
+Pork=1.54
+Beef=1.67
+Lamb=2.65
+Chicken=3.67
+Turkey=1.57
+Duck=2.65
+Fish=1.98
+Shrimp=1.36
+Crab=2.35

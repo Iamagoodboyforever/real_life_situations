@@ -1,0 +1,10 @@
+Milk=1.50
+Curd=1.00
+Butter=1.75
+Cream=1.45
+Ice cream=1.99
+Cheese=1.99
+Yogurt=1.50
+Kefir=1.25
+Powdered milk=1.78
+Condensed milk=1.69
