@@ -1,4 +1,6 @@
 # remember to check first if they money to buy and then ask to buy.
+# there is definetely a shorter version of this code. Working on it right now!
+
 
 import os
 
