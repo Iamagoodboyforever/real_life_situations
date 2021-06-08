@@ -1,8 +1,9 @@
 # remember to check first if they money to buy and then ask to buy.
 # there is definetely a shorter version of this code. Working on it right now!
-
+# maybe use def functions
 
 import os
+import time
 
 
 def clear():
@@ -11,14 +12,18 @@ def clear():
 
 wallet = 20
 
-bag = []
+fruit_bag = []
+
+veg_bag = []
+
+meat_bag = []
+
+dairy_bag = []
 
 fruits = {}
 
 with open("text_files/fruits.txt") as f:
-
     for line in f:
-
         (key, val) = line.split('=')
 
         fruits[key] = float(val)
@@ -26,9 +31,7 @@ with open("text_files/fruits.txt") as f:
 veg = {}
 
 with open("text_files/veg.txt") as f:
-
     for line in f:
-
         (key, val) = line.split('=')
 
         veg[key] = float(val)
@@ -36,9 +39,7 @@ with open("text_files/veg.txt") as f:
 meat = {}
 
 with open("text_files/meat.txt") as f:
-
     for line in f:
-
         (key, val) = line.split('=')
 
         meat[key] = float(val)
@@ -46,9 +47,7 @@ with open("text_files/meat.txt") as f:
 dairy = {}
 
 with open("text_files/dairy.txt") as f:
-
     for line in f:
-
         (key, val) = line.split('=')
 
         dairy[key] = float(val)
@@ -56,6 +55,10 @@ with open("text_files/dairy.txt") as f:
 print("Here is your start amount of money: $" + str(wallet) + ". Use it wisely!")
 
 while wallet >= 5:
+
+    time.sleep(2)
+
+    clear()
 
     choice = input("Do you want to buy fruits/veg/dairy/meat? Or enter q to quit ").lower().strip()
 
@@ -70,27 +73,18 @@ while wallet >= 5:
 
         if COF in fruits:
 
-            cost = veg.get(COF)
+            cost = fruits.get(COF)
 
-            buy = input("Do you want to buy " + COF + "? "
-                        "It costs $" + str(cost) + ". "
-                        "You have: $" + str(wallet) + ". ").lower().strip()
+            qt = int(input("How many do you want to buy? "))
 
-            if buy == 'y' or buy == 'yes':
+            print("Adding to cart...")
 
-                wallet -= cost
+            total = qt * cost
 
-                clear()
+            wallet -= total
 
-                print("You have: $" + str(wallet) + " left.")
-
-                bag.append(COF)
-
-            else:
-
-                clear()
-
-                pass
+            fruit_bag.append(["Product: " + COF, "Each cost: " + str(cost),
+                              "Quantity: " + str(qt), "Total for item: " + str(total)])
 
         else:
 
@@ -102,6 +96,8 @@ while wallet >= 5:
 
     elif choice == 'veg' or choice == 'vegetable':
 
+        clear()
+
         print(veg)
 
         COV = input("Which veg do you want to buy? ")
@@ -110,25 +106,17 @@ while wallet >= 5:
 
             cost = veg.get(COV)
 
-            buy = input("Do you want to buy " + COV + "? "
-                        "It costs $" + str(cost) + ". "
-                        "You have: $" + str(wallet) + ". ").lower().strip()
+            qt = int(input("How many do you want to buy? "))
 
-            if buy == 'y' or buy == 'yes':
+            print("Adding to cart...")
 
-                wallet -= cost
+            total = qt * cost
 
-                clear()
+            wallet -= total
 
-                print("You have: $" + str(wallet) + " left.")
-
-                bag.append(COV)
-
-            else:
-
-                clear()
-
-                pass
+            veg_bag.append(
+                ["Product: " + COV, "Each cost: " + str(cost),
+                 "Quantity: " + str(qt), "Total for item: " + str(total)])
 
         else:
 
@@ -148,25 +136,16 @@ while wallet >= 5:
 
             cost = dairy.get(COD)
 
-            buy = input("Do you want to buy " + COD + "? "
-                        "It costs $" + str(cost) + ". "
-                        "You have: $" + str(wallet) + ". ").lower().strip()
+            qt = int(input("How many do you want to buy? "))
 
-            if buy == 'y' or buy == 'yes':
+            print("Adding to cart...")
 
-                wallet -= cost
+            total = qt * cost
 
-                clear()
+            wallet -= total
 
-                print("You have: $" + str(wallet) + " left.")
-
-                bag.append(COD)
-
-            else:
-
-                clear()
-
-                pass
+            dairy_bag.append(["Product: " + COD, "Each cost: " + str(cost),
+                              "Quantity: " + str(qt), "Total for item: " + str(total)])
 
         else:
 
@@ -185,25 +164,17 @@ while wallet >= 5:
 
             cost = meat.get(COM)
 
-            buy = input("Do you want to buy " + COM + "? "
-                        "It costs $" + str(cost) + ". "
-                        "You have: $" + str(wallet) + ". ").lower().strip()
+            qt = int(input("How many do you want to buy? "))
 
-            if buy == 'y' or buy == 'yes':
+            print("Adding to cart...")
 
-                wallet -= cost
+            total = qt * cost
 
-                clear()
+            wallet -= total
 
-                print("You have: $" + str(wallet) + " left.")
-
-                bag.append(COM)
-
-            else:
-
-                clear()
-
-                pass
+            meat_bag.append(
+                ["Product: " + COM, "Each cost: " + str(cost),
+                 "Quantity: " + str(qt), "Total for item: " + str(total)])
 
         else:
 
@@ -212,17 +183,55 @@ while wallet >= 5:
             print("You have mistyped or chose an option not in the list. Pls try again.")
 
             pass
-if wallet <5:
+if wallet < 5:
 
     print("You cannot buy any other item")
 
 else:
     pass
 
+clear()
+
 print("Here is the amount of money you have left and your bag.")
 
-print("$" + str(wallet))
+for x in fruit_bag:
+    if len(x) > 0:
 
-print(bag)
+        print(fruit_bag)
+
+    else:
+        pass
+
+print()
+
+for x in veg_bag:
+    if len(x) > 0:
+
+        print(veg_bag)
+
+    else:
+        pass
+
+print()
+
+for x in dairy_bag:
+    if len(x) > 0:
+
+        print(dairy_bag)
+
+    else:
+        pass
+
+print()
+
+for x in meat_bag:
+    if len(x) > 0:
+
+        print(meat_bag)
+
+    else:
+        pass
+
+print("Money left: $" + str(wallet))
 
 print("Come back next time.")
